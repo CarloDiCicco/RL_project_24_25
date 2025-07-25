@@ -16,4 +16,4 @@ def save_model(model, path: str):
     Save the Stable-Baselines3 model to the specified path.
     The file will be named <path>/model.zip.
     """
-    model.save(os.path.join(path, "model"))
+    model.save(os.path.join(path, "final_model"))
