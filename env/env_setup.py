@@ -1,13 +1,23 @@
+# Gymnasium factory: only reset_noise_scale as a knob. No action ramp.
 import gymnasium as gym
 
-def make_env(name: str, seed: int = 0, render: bool = False, frame_skip: int = 5):
+def make_env(
+    name: str,
+    seed: int = 0,
+    render: bool = False,
+    frame_skip: int = 5,
+    reset_noise_scale: float = 0.10,  # HalfCheetah-v5 default
+):
     """
-    Create and return a Gymnasium environment.
-    - name: Gymnasium environment ID, e.g., "HalfCheetah-v4"
-    - seed: random seed for reproducibility
-    - render: if True, enable human rendering
+    Create and return a Gymnasium MuJoCo environment.
+    `reset_noise_scale` controls how much the initial state is perturbed at reset.
     """
     render_mode = "human" if render else None
-    env = gym.make(name, render_mode=render_mode, frame_skip=frame_skip)
+    env = gym.make(
+        name,
+        render_mode=render_mode,
+        frame_skip=frame_skip,
+        reset_noise_scale=reset_noise_scale,
+    )
     env.reset(seed=seed)
     return env
