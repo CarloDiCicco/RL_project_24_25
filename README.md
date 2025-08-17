@@ -57,7 +57,7 @@ RL_project_24_25/
 │   ├── logging.py                   # minimal logger configuration
 │   └── video.py                     # mp4 → gif via ffmpeg (palettegen + paletteuse)
 ├── optimize_hyperparams.py          # Optuna HPO (fast run configuration)
-├── run_all.py                       # end-to-end: baseline → train segments → checkpoints
+├── run_all.py                       # end-to-end training: baseline → train segments → checkpoints
 ├── visualize.py                     # render a trained agent for a few episodes
 └── requirements.txt                 # pinned dependencies
 ```
@@ -66,7 +66,7 @@ RL_project_24_25/
 
 ## Hyperparameter Optimization (HPO)
 
-We ran **two HPO rounds** for SAC on `HalfCheetah-v5`: a broad search to identify impactful knobs, followed by a focused refinement on the learning rate (LR). The goal was to lock a robust configuration for the final training.
+**Two HPO rounds** have been run for SAC on `HalfCheetah-v5`: a broad search to identify impactful knobs, followed by a focused refinement on the learning rate (LR). The goal was to lock a robust configuration for the final training.
 
 ### Round 1 — Broad search
 
@@ -131,8 +131,8 @@ We ran **two HPO rounds** for SAC on `HalfCheetah-v5`: a broad search to identif
 
 ```
 optuna_results/plots/<ALGO>_<ENV>/<timestamp>/
-├── history.png         # optimization history
-├── importances.png     # hyperparameter importances
+├── history.png         # optimization history plot
+├── importances.png     # hyperparameter importances plot
 ├── parallel.png        # parallel coordinates plot
 ├── results.json        # best_params + trial data 
 ├── slice.png           # slice plot
@@ -176,7 +176,7 @@ Run `python run_all.py` to execute the entire training workflow:
    - `learning_curve.png` — mean ± std episodic return over time
    - `comparison.png` — learning curve overlaid with random baseline band
    - `checkpoint_means_barplot.png` — mean returns at 25/50/100%
-8. **Save final model** (if present) as `final_model.zip` and close environments.
+8. **Save final model** as `final_model.zip` and close environments.
 
 **Final folder structure:**
 
@@ -189,7 +189,7 @@ results/<ALGO>_<ENV_ID>/<run>/
 ├── comparison.png # curve vs random baseline
 ├── checkpoint_means_barplot.png # mean returns at 25/50/100%
 ├── best_model.zip # best eval snapshot
-├── final_model.zip # (optional) last-step model
+├── final_model.zip # last-step model
 └── checkpoints/
 ├── 025/
 │ ├── trained_rewards.npz
@@ -270,13 +270,6 @@ During the development of this project, several challenges were identified and a
 ### 4. **Alignment of Checkpoints and Evaluation Frequency**
 - **Problem**: Checkpoint steps were not always multiples of the evaluation frequency, risking misaligned metrics.
 - **Solution**: Add alignment checks in `run_all.py` to ensure each checkpoint step count is a multiple of `EVAL_FREQ_AGG`.
-
-**Impact**  
-These adjustments collectively:
-- Eliminated reward exploitation shortcuts.
-- Increased robustness of learned policies.
-- Preserved comparability of evaluation metrics.
-- Achieved one of the highest recorded SAC HalfCheetah-v5 returns in our tests (~11,483 mean final return).
 
 ---
 
