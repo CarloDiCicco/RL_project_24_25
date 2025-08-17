@@ -237,7 +237,7 @@ results/<ALGO>_<ENV_ID>/<run>/
 
 **Final Policy Rollout (100%)**
 
-<img src="results/SAC_HalfCheetah-v5/20250813_084036/checkpoints/100/rollout10s.gif" alt="Final Policy Rollout">
+<img src="results/SAC_HalfCheetah-v5/20250813_084036/checkpoints/100/rollout_10sV2.gif" width="500" alt="Final Policy Rollout">
 
 *A demonstration of the trained policy at the end of training.*
 
