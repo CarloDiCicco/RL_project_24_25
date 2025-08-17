@@ -45,8 +45,7 @@ RL_project_24_25/
 ├── env/
 │   └── env_setup.py                 # make_env(): Gymnasium wrapper + seeding + frame_skip
 ├── train/
-│   ├── train_utils.py               # init_agent(), learn_segment(), save/close helpers
-│   └── __init__.py                  # package marker
+│   └── train_utils.py               # init_agent(), learn_segment(), save/close helpers
 ├── eval/
 │   ├── random_baseline.py           # collect random-policy rewards (npz) with fixed seeds
 │   ├── eval_suite.py                # checkpoint eval: rewards, boxplot/hist, mp4+gif, meta
