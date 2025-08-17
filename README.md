@@ -237,15 +237,14 @@ results/<ALGO>_<ENV_ID>/<run>/
 
 **Final Policy Rollout (100%)**
 
-<img src="results/SAC_HalfCheetah-v5/20250813_084036/checkpoints/100/rollout_10sV2.gif" width="500" alt="Final Policy Rollout">
+<img src="results/SAC_HalfCheetah-v5/20250813_084036/checkpoints/100/rollout_10sec.gif" width="500" alt="Final Policy Rollout">
 
 *A demonstration of the trained policy at the end of training.*
 
 ### Performance Summary
 
-- **Final mean return** (100%): ~11,483
-- The agent achieves stable locomotion with smooth gait and high forward velocity, matching or exceeding typical SAC HalfCheetah-v5 benchmarks reported in literature.
-- Rapid early improvement followed by a stable plateau after ~1.2M steps.
+- **Final mean return** (100%): 11,483
+- The agent achieves stable locomotion with smooth gait and high forward velocity.
 
 ---
 
