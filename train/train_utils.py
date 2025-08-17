@@ -142,7 +142,7 @@ def close_envs(train_envs, eval_envs):
     train_envs.close()
     eval_envs.close()
 
-def save_final_model_if_any(agent, out_dir: str):
+def save_final_model(agent, out_dir: str):
     """Save a final snapshot without relying on utils.io.save_model signature."""
     import os
     # Save directly via SB3 to results/.../final_model.zip
@@ -198,7 +198,7 @@ def train_and_eval(
         mean_reward = data["results"].mean()
 
     if save_model_flag:
-        save_final_model_if_any(agent, out_dir)
+        save_final_model(agent, out_dir)
 
     close_envs(train_envs, eval_envs)
 
