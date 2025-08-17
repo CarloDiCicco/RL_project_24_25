@@ -1,4 +1,10 @@
-# Gymnasium factory: only reset_noise_scale as a knob. No action ramp.
+"""
+env_setup.py
+
+Factory for Gymnasium MuJoCo environments with configurable
+frame skip and reset noise. Provides make_env() helper.
+"""
+
 import gymnasium as gym
 
 def make_env(

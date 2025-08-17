@@ -1,3 +1,10 @@
+"""
+optimize_hyperparams.py
+
+Runs Optuna hyperparameter optimization for a chosen algorithm/env.
+Handles trials, result logging, and benchmark plots export.
+"""
+
 import multiprocessing as mp
 import os
 import json

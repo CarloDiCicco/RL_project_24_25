@@ -1,4 +1,10 @@
-# eval/plot_learning_curve.py
+"""
+plot_learning_curve.py
+
+Plots mean episodic reward ± std over timesteps from evaluations.npz.
+Saves a fixed-size figure for consistent presentation in the README.
+"""
+
 import os
 import numpy as np
 import matplotlib.pyplot as plt

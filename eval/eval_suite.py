@@ -1,4 +1,11 @@
-# eval/eval_suite.py
+"""
+eval_suite.py
+
+Standardized checkpoint evaluation: run fixed-seed episodes,
+save rewards, plots (boxplot, histogram), rollout video/GIF,
+and model snapshots with metadata.
+"""
+
 import os, json, shutil, glob, math
 from pathlib import Path
 import numpy as np

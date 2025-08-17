@@ -1,5 +1,10 @@
-# run_all.py
-# Orchestrates the full RL training pipeline
+"""
+run_all.py
+
+Main entrypoint for the project. Orchestrates the full training RL workflow:
+baseline evaluation, segmented training with checkpoints, plots,
+and final model saving.
+"""
 
 import multiprocessing as mp
 import json

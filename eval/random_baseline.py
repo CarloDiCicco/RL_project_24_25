@@ -1,4 +1,10 @@
-# eval/random_baseline.py
+"""
+random_baseline.py
+
+Evaluates a random policy over episodes (with or without fixed seeds).
+Returns episodic rewards; supports CLI for quick baseline runs.
+"""
+
 import argparse
 import numpy as np
 from env.env_setup import make_env

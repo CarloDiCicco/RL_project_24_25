@@ -1,3 +1,10 @@
+"""
+visualize.py
+
+Utility script to load the latest trained agent and render a few
+episodes in the environment, printing rewards to console.
+"""
+
 import multiprocessing as mp
 import os
 import glob

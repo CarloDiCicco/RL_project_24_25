@@ -1,4 +1,9 @@
-# eval/checkpoint_summary.py
+"""
+checkpoint_summary.py
+
+Generates a barplot of mean episodic returns at 25%, 50%, and 100%
+checkpoints. Ensures consistent figure size for README visuals.
+"""
 
 import os
 from pathlib import Path

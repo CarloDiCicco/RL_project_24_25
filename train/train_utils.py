@@ -1,4 +1,11 @@
-# train/train_utils.py
+"""
+train_utils.py
+
+Core training utilities: environment initialization, agent setup,
+segmented learning with evaluation, model saving, and compatibility
+helpers for Optuna tuning.
+"""
+
 import os
 import math
 import multiprocessing

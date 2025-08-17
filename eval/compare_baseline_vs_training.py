@@ -1,3 +1,10 @@
+"""
+compare_baseline_vs_training.py
+
+Plots the training curve (mean ± std) against the random-policy baseline.
+Saves a compact figure with external legend for README inclusion.
+"""
+
 import argparse, os
 import numpy as np
 import matplotlib.pyplot as plt
