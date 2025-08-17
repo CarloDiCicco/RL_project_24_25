@@ -16,7 +16,7 @@ from train.train_utils import (
     init_agent,
     learn_segment,
     close_envs,
-    save_final_model_if_any,
+    save_final_model,
 )
 
 # -------------------------------
@@ -54,12 +54,12 @@ BEST_PARAMS_JSON = (
 )
 
 def main():
-    # 1) Load best hyperparameters
+    # Load best hyperparameters
     with open(BEST_PARAMS_JSON, "r") as f:
         best = json.load(f)["best_params"]
     print(f"[INFO] Using optimized hyperparameters: {best}")
 
-    # 2) Initialize agent + envs and create a timestamped output dir
+    # Initialize agent + envs and create a timestamped output dir
     agent, train_envs, eval_envs, out_dir = init_agent(
         algo=ALGO,
         env_id=ENV,
@@ -71,10 +71,10 @@ def main():
     out_dir_path = Path(out_dir)
     print(f"[INFO] Output dir: {out_dir}")
 
-    # 3) Save seeds for full reproducibility
+    # Save seeds for full reproducibility
     (out_dir_path / "seeds.json").write_text(json.dumps({"seeds": SEEDS}, indent=2))
 
-    # 4) Random baseline ONCE (1 env, fixed seeds, no render)
+    # Random baseline ONCE (1 env, fixed seeds, no render)
     random_rewards = evaluate_random(ENV, seeds=SEEDS, render=False)
     rnd_path = out_dir_path / "random_baseline_rewards.npz"
     np.savez(rnd_path, rewards=np.array(random_rewards, dtype=np.float32))
@@ -94,7 +94,7 @@ def main():
     )
     # ----------------------------------------------------------------------
 
-    # 5) Train in segments and run checkpoint evaluations
+    # Train in segments and run checkpoint evaluations
     trained_so_far = 0
     for frac in CHECKPOINT_FRACS:
         target_steps  = int(TOTAL_TIMESTEPS * frac)
@@ -138,18 +138,18 @@ def main():
 
         print(f"[INFO] Checkpoint {int(frac*100)}% completed: {stage_dir}")
 
-    # 6) Final plots (learning curve and training vs random)
+    # Final plots (learning curve and training vs random)
     plot_learning_curve(str(out_dir_path))
     eval_log = out_dir_path / "evaluations.npz"
     compare_train_vs_rand(str(eval_log), np.load(rnd_path)["rewards"], str(out_dir_path))
 
-    # 7) Barplot of checkpoint means (25/50/100)
+    # Barplot of checkpoint means (25/50/100)
     plot_checkpoint_means(str(out_dir_path))
 
-    # 8) Save final model snapshot
-    save_final_model_if_any(agent, str(out_dir_path))
+    # Save final model snapshot
+    save_final_model(agent, str(out_dir_path))
 
-    # 9) Clean up vec envs
+    # Clean up vec envs
     close_envs(train_envs, eval_envs)
     print("\n[✔] Workflow completed! Check results/ for all plots.")
 
