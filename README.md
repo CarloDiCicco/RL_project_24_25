@@ -6,13 +6,14 @@ This repository contains code for experimenting with reinforcement learning algo
 
 ## Table of Contents
 - [Environment](#environment)
-- [Requirements installation](#requirements-installation)
+- [Requirements & Installation](#requirements--installation)
 - [Repository Structure](#repository-structure)
-- [Hyperparameter Optimization](#hyperparameter-optimization-hpo)
+- [Hyperparameter Optimization (HPO)](#hyperparameter-optimization-hpo)
 - [Running the Full Workflow](#running-the-full-workflow)
 - [Final Training & Model Performance](#final-training--model-performance)
 - [Challenges & Key Problems](#challenges--key-problems)
-- [Visualizing a trained agent](#Visualizing-a-trained-agent)
+- [Visualizing a Trained Agent](#visualizing-a-trained-agent)
+
 
 ---
 
@@ -27,7 +28,7 @@ The helper `make_env()` in `env/env_setup.py` exposes a `frame_skip` parameter (
 
 ---
 
-## Requirements installation 
+## Requirements & Installation
 
 ```bash
 python -m venv .venv
@@ -243,8 +244,7 @@ results/<ALGO>_<ENV_ID>/<run>/
 
 ### Performance Summary
 
-- **Final mean return** (100%): 11,483
-- The agent achieves stable locomotion with smooth gait and high forward velocity.
+The final trained agent achieves a mean return of **11,483** (100% checkpoint), averaged over **10 independent evaluation episodes**. This is consistent with standard benchmarking practices. However, no published benchmarks currently exist for **HalfCheetah-v5**. Thus, this performance should be interpreted as a strong outcome within this experimental setup rather than as a state-of-the-art benchmark.
 
 ---
 
@@ -281,8 +281,6 @@ These adjustments collectively:
 
 ---
 
-## Visualizing a trained agent
+## Visualizing a Trained Agent
 
 Use `python visualize.py` to render the latest agent. This script loads `best_model.zip`, creates a single `DummyVecEnv` with rendering enabled and plays a few episodes on CPU.
-
-## Notes & Caveats
